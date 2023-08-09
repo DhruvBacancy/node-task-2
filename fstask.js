@@ -84,6 +84,43 @@ fs.readFile("./Train_details.csv", "utf8", (err, data) => {
            }
            console.log(table.toString())
            break;
+           case 4:
+            const stationNumber1 = []
+            for (let i = 0; i < trainData.length; i++) {
+                if (i === (trainData.length - 1)) {
+                    stationNumber1.push({ trainNumber: trainData[i].trainNo, trainTotalStation: trainData[i].seq })
+                    break;
+                }
+                if ((+trainData[i].trainNo) !== (+trainData[i + 1].trainNo)) {
+                    stationNumber1.push({ trainNumber: trainData[i].trainNo, trainTotalStation: trainData[i].seq })
+                }
+            }
+            stationNumber1.sort((a,b)=>{return b.trainTotalStation - a.trainTotalStation})
+            flag1=0; 
+            for(i=0;i<stationNumber1.length;i++)
+            {
+                if(stationNumber1[i+1].trainTotalStation<stationNumber1[i].trainTotalStation)
+                {
+                    flag1=i+1;
+                    break;
+                }               
+            }
+            for(i=stationNumber1.length;i>flag1;i--)
+            {
+                stationNumber1.pop();
+            }
+            console.log(stationNumber1)
+
+           var table=new Table({
+            head: ['Train No','Total Stations Covered']
+            
+           }); 
+           for(i in stationNumber1)
+           {
+                table.push([stationNumber1[i].trainNumber,stationNumber1[i].trainTotalStation])
+           }
+           console.log(table.toString())
+            break;
         default:
             console.log("Wrong Choice!!Try again")
             break;
