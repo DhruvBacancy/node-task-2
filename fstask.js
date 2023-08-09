@@ -109,11 +109,8 @@ fs.readFile("./Train_details.csv", "utf8", (err, data) => {
             {
                 stationNumber1.pop();
             }
-            console.log(stationNumber1)
-
            var table=new Table({
             head: ['Train No','Total Stations Covered']
-            
            }); 
            for(i in stationNumber1)
            {
@@ -131,7 +128,7 @@ fs.readFile("./Train_details.csv", "utf8", (err, data) => {
 })
 
 
-// "trainNo",
+//     "trainNo",
 //     "trainName",
 //     "seq",
 //     "stationCode",
